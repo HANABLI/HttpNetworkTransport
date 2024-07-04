@@ -136,10 +136,11 @@ namespace HttpNetworkTransport {
             ](std::shared_ptr< SystemUtils::NetworkConnection > newConnection){
                 const auto adapter = std::make_shared< ConnectionAdapter >();
                 adapter->adapter = newConnection;
+                newConnectionDelegate(adapter);
                 if (!adapter->WireUpAdapter()) {
                     return;
                 }
-                newConnectionDelegate(adapter);
+                
             },
             [this](
                 uint32_t address,
