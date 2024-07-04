@@ -8,9 +8,11 @@
 
 #include <mutex>
 #include <vector>
+#include <inttypes.h>
 #include <condition_variable>
 #include <gtest/gtest.h>
 #include <SystemUtils/NetworkConnection.hpp>
+#include <StringUtils/StringUtils.hpp>
 #include <HttpNetworkTransport\HttpServerNetworkTransport.hpp>
 
 
@@ -134,6 +136,13 @@ TEST(HttpServerNetworkTransportTests, DataReceivingFromClient) {
             )
         );
     }
+    ASSERT_EQ(
+        StringUtils::sprintf(
+            "127.0.0.1:%" PRIu16,
+            client.GetBoundPort()
+        ),
+        connections[0]->GetPeerId()
+    );
     const std::string message = "Hello World!";
     const std::vector< uint8_t > messageAsBytes(
         message.begin(),

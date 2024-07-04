@@ -11,6 +11,8 @@
 #include <SystemUtils/NetworkConnection.hpp>
 #include <HttpNetworkTransport/HttpServerNetworkTransport.hpp>
 #include <Http/Connection.hpp>
+#include <StringUtils/StringUtils.hpp>
+#include <inttypes.h>
 
 namespace {
     /**
@@ -70,6 +72,18 @@ namespace {
         }
 
         /* Http::Connection */
+
+        virtual std::string GetPeerId() override {
+            return StringUtils::sprintf(
+                "%" PRIu8 ".%" PRIu8 ".%" PRIu8 ".%" PRIu8 ":%" PRIu16,
+                (uint8_t)((adapter->GetPeerAddress() >> 24) & 0xFF),
+                (uint8_t)((adapter->GetPeerAddress() >> 16) & 0xFF),
+                (uint8_t)((adapter->GetPeerAddress() >> 8) & 0xFF),
+                (uint8_t)((adapter->GetPeerAddress()) & 0xFF),
+                adapter->GetPeerPort()
+            );
+        }
+
         virtual void SetDataReceivedDelegate(DataReceivedDelegate newDataReceivedDelegate) override {
             dataReceivedDelegate = newDataReceivedDelegate;
         }
