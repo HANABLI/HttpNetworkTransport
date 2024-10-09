@@ -25,6 +25,7 @@ target_include_directories(${this} PUBLIC include)
 
 target_link_libraries(${this} PUBLIC
     SystemUtils
+    StringUtils
     Http
 )
 
