@@ -3,15 +3,15 @@
 
 /**
  * @file HttpClientNetworkTransport.hpp
- * 
+ *
  * This module declare the HttpNetworkTransport::HttpClientNetworkTransport
  * class
- * 
+ *
  * © 2024 by Hatem Nabli
  */
 
-namespace HttpNetworkTransport {
-
+namespace HttpNetworkTransport
+{
 }
 
 #endif /* HTTP_NETWORK_TRANSPORT_HTTP_SERVER_NETWORK_TRANSPORT_HPP */

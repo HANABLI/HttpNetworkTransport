@@ -3,6 +3,6 @@
  * class
  */
 
-namespace HttpNetworkTransport {
-    
+namespace HttpNetworkTransport
+{
 }
