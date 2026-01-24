@@ -14,6 +14,7 @@
 #include <condition_variable>
 #include <mutex>
 #include <vector>
+#include <thread>
 
 TEST(HttpServerNetworkTransportTests, BindNetwork) {
     HttpNetworkTransport::HttpServerNetworkTransport transport;
