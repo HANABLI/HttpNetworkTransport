@@ -8,7 +8,7 @@
 
 #include <gtest/gtest.h>
 #include <inttypes.h>
-#include <HttpNetworkTransport\HttpServerNetworkTransport.hpp>
+#include <HttpNetworkTransport/HttpServerNetworkTransport.hpp>
 #include <StringUtils/StringUtils.hpp>
 #include <SystemUtils/NetworkConnection.hpp>
 #include <condition_variable>
