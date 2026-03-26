@@ -57,7 +57,7 @@ namespace
          *      successful is returned.
          */
         bool WireUpAdapter() {
-            return adapter->Process(
+            return adapter->DoWork(
                 [this](const std::vector<uint8_t>& message)
                 {
                     if (dataReceivedDelegate != nullptr)
