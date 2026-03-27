@@ -83,7 +83,7 @@ TEST(HttpServerNetworkTransportTests, DataReceivingFromClient) {
     const auto port = transport.GetBoundPort();
     SystemUtils::NetworkConnection client;
     (void)client.Connect(0x7F000001, port);
-    ASSERT_TRUE(client.Process([](const std::vector<uint8_t>& message) {}, [](bool graceful) {}));
+    ASSERT_TRUE(client.DoWork([](const std::vector<uint8_t>& message) {}, [](bool graceful) {}));
     {
         std::unique_lock<std::mutex> lock(mutex);
         ASSERT_TRUE(condition.wait_for(lock, std::chrono::seconds(1),
@@ -125,7 +125,7 @@ TEST(HttpServerNetworkTransportTests, DataSendingtoClient) {
     const auto port = transport.GetBoundPort();
     SystemUtils::NetworkConnection client;
     (void)client.Connect(0x7F000001, port);
-    ASSERT_TRUE(client.Process(
+    ASSERT_TRUE(client.DoWork(
         [&dataReceived, &mutex, &condition](const std::vector<uint8_t>& message)
         {
             std::unique_lock<std::mutex> lock(mutex);
@@ -177,7 +177,7 @@ TEST(HttpServerNetworkTransportTests, DataReceivedShouldNotRaceConnectionDelegat
     const auto port = transport.GetBoundPort();
     SystemUtils::NetworkConnection client;
     (void)client.Connect(0x7F000001, port);
-    ASSERT_TRUE(client.Process([](const std::vector<uint8_t>& message) {}, [](bool graceful) {}));
+    ASSERT_TRUE(client.DoWork([](const std::vector<uint8_t>& message) {}, [](bool graceful) {}));
     const std::string message = "Hello World!";
     const std::vector<uint8_t> messageAsBytes(message.begin(), message.end());
     client.SendMessage(messageAsBytes);
